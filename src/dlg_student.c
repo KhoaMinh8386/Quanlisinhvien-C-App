@@ -49,7 +49,7 @@ static void CreateInfoPanel(HWND hDlg);
 static void CreateSubjPanel(HWND hDlg);
 static void CreateFinPanel(HWND hDlg);
 static void SwitchTab(int idx);
-static void UpdateSubjRow(int row);
+static BOOL UpdateSubjRow(int row);
 static void AddSubjectRow(HWND hDlg, int row);
 static void RefreshFinPanel(HWND hDlg);
 static BOOL SaveAndValidate(HWND hDlg);
@@ -139,13 +139,24 @@ static void AddSubjectRow(HWND hDlg, int row) {
     EnumChildWindows(hPanelSubj, (WNDENUMPROC)SetFontProc, (LPARAM)hFontGlobal);
 }
 
-static void UpdateSubjRow(int row) {
+static BOOL UpdateSubjRow(int row) {
     wchar_t buf[20];
-    GetWindowTextW(hSubjEdit[row][0], buf, 20); dlgStudent.subjects[row].score_process = (float)_wtof(buf);
-    GetWindowTextW(hSubjEdit[row][1], buf, 20); dlgStudent.subjects[row].score_midterm = (float)_wtof(buf);
-    GetWindowTextW(hSubjEdit[row][2], buf, 20); dlgStudent.subjects[row].score_final = (float)_wtof(buf);
+    float sp, sm, sf;
+    GetWindowTextW(hSubjEdit[row][0], buf, 20); sp = (float)_wtof(buf);
+    GetWindowTextW(hSubjEdit[row][1], buf, 20); sm = (float)_wtof(buf);
+    GetWindowTextW(hSubjEdit[row][2], buf, 20); sf = (float)_wtof(buf);
+    
+    if (sp < 0.0f || sp > 10.0f || sm < 0.0f || sm > 10.0f || sf < 0.0f || sf > 10.0f) {
+        MessageBoxW(GetParent(hPanelSubj), L"Lỗi: Điểm phải nằm trong khoảng từ 0 đến 10!", L"Dữ liệu không hợp lệ", MB_OK|MB_ICONERROR);
+        return FALSE;
+    }
+
+    dlgStudent.subjects[row].score_process = sp;
+    dlgStudent.subjects[row].score_midterm = sm;
+    dlgStudent.subjects[row].score_final = sf;
     calculate_subject_gpa(&dlgStudent.subjects[row]);
     SetWindowTextW(hGpaLabel[row], dlgStudent.subjects[row].grade);
+    return TRUE;
 }
 
 static void CreateFinPanel(HWND hDlg) {
@@ -210,7 +221,10 @@ static BOOL SaveAndValidate(HWND hDlg) {
     dlgStudent.semester = SendMessage(GetDlgItem(hPanelInfo, IDC_CMB_YEAR), CB_GETCURSEL, 0, 0) + 1;
     dlgStudent.tuition_status = SendMessage(hFinStatusCb, CB_GETCURSEL, 0, 0);
 
-    for (int i=0; i<dlgStudent.subject_count; i++) UpdateSubjRow(i);
+    for (int i=0; i<dlgStudent.subject_count; i++) {
+        if (!UpdateSubjRow(i)) return FALSE;
+    }
+    
     calculate_student_gpa(&dlgStudent);
     calculate_full_tuition(&dlgStudent);
     
