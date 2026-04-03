@@ -1,0 +1,24 @@
+# --- Makefile for Student Management GUI (WinAPI Fallback) ---
+
+CC      = gcc
+CFLAGS  = -Wall -Wextra -std=c99 -Iinclude
+LIBS    = -lcomctl32 -lgdi32 -lcomdlg32 -mwindows
+
+SRC = src/main_win32.c \
+      src/academic.c \
+      src/finance.c \
+      src/management.c
+
+OBJ = $(SRC:.c=.o)
+TARGET = student_manager_win32.exe
+
+all: $(TARGET)
+
+$(TARGET): $(SRC)
+	$(CC) $(CFLAGS) -o $@ $^ $(LIBS)
+
+clean:
+	rm -f src/*.o $(TARGET) students.dat
+
+run: all
+	./$(TARGET)

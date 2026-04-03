@@ -1,0 +1,112 @@
+src/main_win32.c: In function 'RefreshListView':
+src/main_win32.c:103:33: error: 'Student' has no member named 'class_code'; did you mean 'class_name'?
+  103 |         LVSet(idx,2,students[i].class_code[0]?students[i].class_code:L"—");
+      |                                 ^~~~~~~~~~
+      |                                 class_name
+src/main_win32.c:103:59: error: 'Student' has no member named 'class_code'; did you mean 'class_name'?
+  103 |         LVSet(idx,2,students[i].class_code[0]?students[i].class_code:L"—");
+      |                                                           ^~~~~~~~~~
+      |                                                           class_name
+src/main_win32.c:106:88: error: 'Student' has no member named 'gpa_4'
+  106 |         swprintf(b,20,L"%.2f",students[i].gpa_4_avg>0?students[i].gpa_4_avg:students[i].gpa_4); LVSet(idx,5,b);
+      |                                                                                        ^
+src/main_win32.c:107:32: error: 'Student' has no member named 'academic_rank'
+  107 |         LVSet(idx,6,students[i].academic_rank[0]?students[i].academic_rank:L"—");
+      |                                ^
+src/main_win32.c:107:61: error: 'Student' has no member named 'academic_rank'
+  107 |         LVSet(idx,6,students[i].academic_rank[0]?students[i].academic_rank:L"—");
+      |                                                             ^
+src/main_win32.c:110:36: error: 'Student' has no member named 'scholarship'
+  110 |         format_currency(students[i].scholarship, c); AToW(c,b,64);              LVSet(idx,9,b);
+      |                                    ^
+src/main_win32.c:111:36: error: 'Student' has no member named 'final_payable'
+  111 |         format_currency(students[i].final_payable, c); AToW(c,b,64);            LVSet(idx,10,b);
+      |                                    ^
+src/main_win32.c: In function 'UpdateSummary':
+src/main_win32.c:120:66: error: 'Student' has no member named 'final_payable'
+  120 |     for (int i = 0; i < studentCount; i++) { total += students[i].final_payable; gpa_sum += students[i].gpa_4_avg; }
+      |                                                                  ^
+src/main_win32.c: In function 'ExportCSV':
+src/main_win32.c:140:32: error: 'Student' has no member named 'class_code'; did you mean 'class_name'?
+  140 |             s->id, s->name, s->class_code, s->semester, s->total_credits,
+      |                                ^~~~~~~~~~
+      |                                class_name
+src/main_win32.c:141:28: error: 'Student' has no member named 'academic_rank'
+  141 |             s->gpa_4_avg, s->academic_rank,
+      |                            ^~
+src/main_win32.c:142:31: error: 'Student' has no member named 'scholarship'
+  142 |             s->tuition_base, s->scholarship, s->final_payable,
+      |                               ^~
+src/main_win32.c:142:47: error: 'Student' has no member named 'final_payable'
+  142 |             s->tuition_base, s->scholarship, s->final_payable,
+      |                                               ^~
+src/main_win32.c: In function 'DrawReportDashboard':
+src/main_win32.c:191:29: error: 'Student' has no member named 'final_payable'
+  191 |         total += students[i].final_payable; gpa_sum += students[i].gpa_4_avg;
+      |                             ^
+src/main_win32.c: In function 'WndProc':
+src/main_win32.c:328:123: error: 'Student' has no member named 'gpa_4'
+  328 |                         int r=(int)cd->nmcd.lItemlParam; float g=students[r].gpa_4_avg>0?students[r].gpa_4_avg:students[r].gpa_4;
+      |                                                                                                                           ^
+src/management.c: In function 'add_student':
+src/management.c:26:9: warning: implicit declaration of function 'calculate_gpa' [-Wimplicit-function-declaration]
+   26 |         calculate_gpa(&s);
+      |         ^~~~~~~~~~~~~
+src/management.c:27:9: warning: implicit declaration of function 'calculate_tuition'; did you mean 'calculate_full_tuition'? [-Wimplicit-function-declaration]
+   27 |         calculate_tuition(&s);
+      |         ^~~~~~~~~~~~~~~~~
+      |         calculate_full_tuition
+src/management.c:28:9: warning: implicit declaration of function 'apply_scholarship' [-Wimplicit-function-declaration]
+   28 |         apply_scholarship(&s);
+      |         ^~~~~~~~~~~~~~~~~
+src/management.c:29:9: warning: implicit declaration of function 'calculate_final' [-Wimplicit-function-declaration]
+   29 |         calculate_final(&s);
+      |         ^~~~~~~~~~~~~~~
+src/dlg_student.c: In function 'AddSubjectRow':
+src/dlg_student.c:139:32: warning: unused parameter 'hDlg' [-Wunused-parameter]
+  139 | static void AddSubjectRow(HWND hDlg, int row) {
+      |                           ~~~~~^~~~
+src/dlg_student.c: In function 'RefreshFinPanel':
+src/dlg_student.c:221:15: error: 'Student' has no member named 'tuition_per_credit'
+  221 |     dlgStudent.tuition_per_credit = DEFAULT_CLASSES[cls_idx].tuition_per_credit;
+      |               ^
+src/dlg_student.c:225:31: error: 'Student' has no member named 'scholarship'
+  225 |     format_currency(dlgStudent.scholarship, c2);
+      |                               ^
+src/dlg_student.c:226:31: error: 'Student' has no member named 'penalty_fee'
+  226 |     format_currency(dlgStudent.penalty_fee, c3);
+      |                               ^
+src/dlg_student.c:227:31: error: 'Student' has no member named 'final_payable'
+  227 |     format_currency(dlgStudent.final_payable, c4);
+      |                               ^
+src/dlg_student.c:247:64: error: 'Student' has no member named 'academic_rank'
+  247 |         dlgStudent.gpa_10_avg, dlgStudent.gpa_4_avg, dlgStudent.academic_rank,
+      |                                                                ^
+src/dlg_student.c:248:20: error: 'Student' has no member named 'pass_count'; did you mean 'fail_count'?
+  248 |         dlgStudent.pass_count, dlgStudent.fail_count,
+      |                    ^~~~~~~~~~
+      |                    fail_count
+src/dlg_student.c:249:45: error: 'Student' has no member named 'tuition_per_credit'
+  249 |         dlgStudent.total_credits, dlgStudent.tuition_per_credit,
+      |                                             ^
+src/dlg_student.c: In function 'SaveAndValidate':
+src/dlg_student.c:298:68: error: 'Student' has no member named 'dob'
+  298 |     GetWindowTextW(GetDlgItem(hPanelInfo, IDC_TXT_DOB),  dlgStudent.dob,   20);
+      |                                                                    ^
+src/dlg_student.c:306:23: error: 'Student' has no member named 'class_code'; did you mean 'class_name'?
+  306 |     wcscpy(dlgStudent.class_code, DEFAULT_CLASSES[cls_idx].code);
+      |                       ^~~~~~~~~~
+      |                       class_name
+src/dlg_student.c:310:15: error: 'Student' has no member named 'year_of_study'
+  310 |     dlgStudent.year_of_study = yr_idx + 1;
+      |               ^
+src/dlg_student.c:311:15: error: 'Student' has no member named 'tuition_per_credit'
+  311 |     dlgStudent.tuition_per_credit = DEFAULT_CLASSES[cls_idx].tuition_per_credit;
+      |               ^
+src/dlg_student.c: In function 'StudentDlgWndProc':
+src/dlg_student.c:358:80: error: 'Student' has no member named 'dob'
+  358 |                 SetWindowTextW(GetDlgItem(hPanelInfo,IDC_TXT_DOB),   dlgStudent.dob);
+      |                                                                                ^
+src/dlg_student.c:329:24: warning: unused variable 'H' [-Wunused-variable]
+  329 |             int W=660, H=490, bY=455;
+      |                        ^

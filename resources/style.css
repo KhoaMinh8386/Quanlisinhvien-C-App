@@ -1,0 +1,143 @@
+/* --- Modern Dark Theme CSS --- */
+
+/* Sử dụng chuẩn CSS variables để tránh lỗi hiển thị ở IDE, GTK3 vẫn hỗ trợ đầy đủ */
+@define-color bg_dark     #0f1117;
+@define-color bg_card     #1a1d2e;
+@define-color bg_sidebar  #12141f;
+@define-color accent      #6366f1;   /* Indigo */
+@define-color accent_hover #818cf8;
+@define-color text_primary  #e2e8f0;
+@define-color text_muted    #94a3b8;
+@define-color success       #22c55e;
+@define-color warning       #f59e0b;
+@define-color danger        #ef4444;
+
+window {
+    background-color: @bg_dark;
+    color: @text_primary;
+    font-family: "Segoe UI", "Inter", "Open Sans", sans-serif;
+    font-size: 14px;
+}
+
+/* Sidebar button styling */
+.sidebar-btn {
+    background: transparent;
+    color: @text_muted;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    text-align: left;
+    transition: all 200ms ease;
+}
+
+.sidebar-btn:hover {
+    background-color: rgba(99, 102, 241, 0.15);
+    color: @text_primary;
+}
+
+.sidebar-btn.active {
+    background-color: rgba(99, 102, 241, 0.25);
+    color: @accent;
+    font-weight: 600;
+}
+
+/* TreeView (Danh sách sinh viên) */
+treeview {
+    background-color: @bg_card;
+    color: @text_primary;
+    border-radius: 8px;
+    padding: 5px;
+}
+
+treeview:selected {
+    background-color: @accent;
+    color: white;
+}
+
+treeview header button {
+    background-color: @bg_sidebar;
+    color: @text_muted;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    padding: 8px;
+    border: none;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Notebook styling */
+notebook {
+    background: transparent;
+    border: none;
+}
+
+notebook header {
+    background: transparent;
+    border: none;
+    padding: 0;
+}
+
+notebook tab {
+    padding: 0;
+    margin: 0;
+    border: none;
+    background: transparent;
+}
+
+/* Card Statistics */
+.stat-card {
+    background-color: @bg_card;
+    border-radius: 12px;
+    padding: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.stat-label {
+    color: @text_muted;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+}
+
+.stat-value {
+    color: @text_primary;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+/* Form entry styling */
+entry {
+    background-color: @bg_sidebar;
+    color: @text_primary;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 8px;
+    padding: 10px 14px;
+}
+
+entry:focus {
+    border-color: @accent;
+}
+
+/* Primary buttons */
+.btn-primary {
+    background-color: @accent;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 24px;
+    font-weight: 600;
+}
+
+.btn-primary:hover {
+    background-color: @accent_hover;
+}
+
+/* Badges */
+.badge-success { background: rgba(34,197,94,0.2);  color: @success; border-radius: 20px; padding: 4px 12px; font-weight: 600; }
+.badge-warning { background: rgba(245,158,11,0.2); color: @warning; border-radius: 20px; padding: 4px 12px; font-weight: 600; }
+.badge-default { background: rgba(148,163,184,0.15); color: @text_muted; border-radius: 20px; padding: 4px 12px; font-weight: 600; }
